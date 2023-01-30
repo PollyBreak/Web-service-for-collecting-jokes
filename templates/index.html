@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Products {% endblock %}</h1>
+    <br>
+    <div class="content">
+        <div th:switch="${jokes}">
+            <h2 th:case="null">No jokes yet!</h2>
+            <div th:case="*">
+                <div class="product" th:each="joke: %{jokes}">
+                    <p><a style="text-decoration: none; color: black" th:text="${joke.id}"><b></b></a></p>
+                    <b>
+                        <p class="name" th:text="${joke.text}"><a></a></p>
+                    </b>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
