@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %} - BassProShop</title>
+    <title>{% block title %}{% endblock %} - JOKEHUB</title>
     <style>
         .title {
             font-family: "Segoe UI";
@@ -20,7 +20,7 @@
             justify-content: center;
         }
 
-        .product {
+        .framedtext {
             inline-size: 100%;
             padding: 10px;
             margin: 5px;
@@ -47,14 +47,14 @@
     </style>
 </head>
 <body bgcolor="#f5f5dc">
-    <nav>
-        <a href="/index">Home</a>
-        <a href="/addcat">Add</a>
-        <a href="/addjoke">Add</a>
-    </nav>
-    <hr>
-    <div class="content">
-        {% block content %} {% endblock %}
-    </div>
+<nav>
+    <a href="/index">Home</a>
+    <a href="/addcat">Add category</a>
+    <a href="/addjoke">Add joke</a>
+</nav>
+<hr>
+<div class="content">
+    {% block content %} {% endblock %}
+</div>
 </body>
 </html>
