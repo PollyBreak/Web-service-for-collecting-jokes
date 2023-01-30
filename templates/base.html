@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - JOKEHUB</title>
+    <style>
+        .title {
+            font-family: "Segoe UI";
+            font-size: 2em;
+            margin: 5px;
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+        }
+
+        .content {
+            margin: 5px;
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+
+        .framedtext {
+            inline-size: 100%;
+            padding: 10px;
+            margin: 5px;
+            background-color: papayawhip;
+            border: 1px solid black;
+            font-family: Roboto;
+        }
+
+        .name a {
+            color: darkslategray;
+            font-family: Corbel;
+            font-size: 2em;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #babaaa;
+            border: cornsilk;
+            font-family: "Segoe UI Light";
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body bgcolor="#f5f5dc">
+<nav>
+    <a href="/index">Home</a>
+    <a href="/addcat">Add category</a>
+    <a href="/addjoke">Add joke</a>
+</nav>
+<hr>
+<div class="content">
+    {% block content %} {% endblock %}
+</div>
+</body>
+</html>

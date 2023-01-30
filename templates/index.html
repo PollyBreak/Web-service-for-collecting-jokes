@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="title">{% block title %} Categories (DEBUG) {% endblock %}</h1>
+<br>
+<div class="content">
+    <div th:switch="${categories}">
+        <h2 th:case="null">No categories yet!</h2>
+        <div th:case="*">
+            <div class="framedtext" th:each="category: %{categories}">
+                <p><a style="text-decoration: none; color: black" th:text="${category.id}"><b></b></a></p>
+                <b>
+                    <p class="name" th:text="${category.name}"><a></a></p>
+                </b>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
