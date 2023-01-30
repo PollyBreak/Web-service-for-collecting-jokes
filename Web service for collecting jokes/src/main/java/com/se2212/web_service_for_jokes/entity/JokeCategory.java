@@ -16,4 +16,27 @@ public class JokeCategory {
     @Column(name = "name")
     private String name;
 
+    public JokeCategory(String name) {
+        this.name = name;
+    }
+
+    public JokeCategory() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Категория: " + name + '\'';
+    }
 }
