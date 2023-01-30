@@ -3,13 +3,13 @@ use db_for_fun;
 
 create table category_jokes(
     category_id int PRIMARY KEY AUTO_INCREMENT,
-    name text
+    name text NOT NULL
 );
 
 create table jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
 category int,
-text text,
+text text NOT NULL,
 rating int default 0,
 foreign key (category) references category_jokes(category_id));
 
@@ -26,7 +26,7 @@ decision bool);
 create table new_jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
 category int,
-text text,
+text text NOT NULL,
 decision bool,
 foreign key (category) references category_jokes(category_id));
 
