@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="width: 100%">{% block title %} Adding a new category... {% endblock %}</h1>
+    <form action="#" th:action="@{/addcat}" th:object="${cat}" method="post">
+        <p>
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name"
+                   placeholder="Enter a new category here">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></input>
+        </p>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+{% endblock %}
