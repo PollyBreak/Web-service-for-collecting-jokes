@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1 style="width: 100%">{% block title %} Adding a new category... {% endblock %}</h1>
-    <form action="#" th:action="@{/addcat}" th:object="${cat}" method="post">
+    <form action="#" th:action="@{/addcategory}" th:object="${category}" method="post">
         <p>
             <label for="name">Name</label>
             <input type="text" th:field="*{name}" id="name"
