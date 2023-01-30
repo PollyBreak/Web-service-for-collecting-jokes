@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-create database funny_db;
-use funny_db;
+create database db_for_fun;
+use db_for_fun;
 
 create table category_jokes(
     category_id int PRIMARY KEY AUTO_INCREMENT,
@@ -30,5 +29,4 @@ category int,
 text text,
 decision bool,
 foreign key (category) references category_jokes(category_id));
-=======
->>>>>>> main
+
