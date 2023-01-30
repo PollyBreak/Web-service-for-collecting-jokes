@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 create database funny_db;
 use funny_db;
 
@@ -29,3 +30,5 @@ category int,
 text text,
 decision bool,
 foreign key (category) references category_jokes(category_id));
+=======
+>>>>>>> main
