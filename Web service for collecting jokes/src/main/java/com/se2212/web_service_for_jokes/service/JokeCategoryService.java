@@ -31,4 +31,9 @@ public class JokeCategoryService {
         return jokeCategory;
     }
 
+    @Transactional
+    public void saveCategory(JokeCategory jokeCategory){
+        jokeCategoryRepository.save(jokeCategory);
+    }
+
 }
