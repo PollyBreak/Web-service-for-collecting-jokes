@@ -21,6 +21,12 @@ public class CategoriesRestController {
         return categories;
     }
 
+    @GetMapping("/categories/{id}")
+    public JokeCategory showCategory(@PathVariable int id){
+        JokeCategory jokeCategory = jokeCategoryService.getJokeCategoryById(id);
+        return jokeCategory;
+    }
+
 
 
 
