@@ -29,14 +29,13 @@ public class CategoriesRestController {
         jokeCategoryService.saveCategory(jokeCategory);
     }
 
-    @PostMapping("/categories/{id}")
-    public JokeCategory updateCategory(@PathVariable int id,@RequestBody JokeCategory newcategory){
-        jokeCategoryService.getJokeCategoryById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
-        newcategory.setId(id);
-        jokeCategoryService.saveCategory(newcategory);
-        return newcategory;
+    @PutMapping("/categories")
+    public JokeCategory updateCategory(@RequestBody JokeCategory updatedCategory){
+        jokeCategoryService.saveCategory(updatedCategory);
+        return updatedCategory;
     }
-    @GetMapping("/categories/{id}/delete")
+    
+    @DeleteMapping("/categories/{id}")
     public List<JokeCategory> deleteCategory(@PathVariable int id){
         jokeCategoryService.deleteCategory(id);
         return showAllCategories();
