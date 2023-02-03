@@ -2,7 +2,6 @@ package com.se2212.web_service_for_jokes.controller;
 
 import com.se2212.web_service_for_jokes.entity.JokeCategory;
 import com.se2212.web_service_for_jokes.service.JokeCategoryService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
