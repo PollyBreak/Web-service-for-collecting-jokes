@@ -26,7 +26,7 @@ public class Joke {
         this.text = text;
         this.jokeCategory = jokeCategory;
     }
-
+    
     public void setText(String text) {
         this.text = text;
     }
@@ -34,6 +34,11 @@ public class Joke {
     public void setJokeCategory(JokeCategory jokeCategory) {
         this.jokeCategory = jokeCategory;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public int getId() {
         return id;
