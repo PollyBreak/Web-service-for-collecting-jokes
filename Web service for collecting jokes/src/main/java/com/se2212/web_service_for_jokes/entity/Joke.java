@@ -9,35 +9,47 @@ public class Joke {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Name cannot be blank")
-    @Column(name = "name")
-    private String name;
+    @Column(name = "text")
+    private String text;
 
-    public Joke(String name) {
-        this.name = name;
-    }
+    @ManyToOne
+    @JoinColumn(name ="category_id")
+    private JokeCategory jokeCategory;
 
     public Joke() {
+    }
+
+    public Joke(String text, JokeCategory jokeCategory) {
+        this.text = text;
+        this.jokeCategory = jokeCategory;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setJokeCategory(JokeCategory jokeCategory) {
+        this.jokeCategory = jokeCategory;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public JokeCategory getJokeCategory() {
+        return jokeCategory;
     }
 
     @Override
     public String toString() {
-        return "Категория: " + name + '\'';
+        return "Шутка: " + text;
     }
 }
 
