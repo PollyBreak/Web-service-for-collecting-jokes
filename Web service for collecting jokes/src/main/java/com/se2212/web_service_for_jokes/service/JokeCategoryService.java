@@ -21,7 +21,7 @@ public class JokeCategoryService {
 
     public JokeCategory getJokeCategoryById(int id) {
         JokeCategory jokeCategory = null;
-        Optional<JokeCategory> optional = jokeCategoryRepository.findById(id);
+        Optional<JokeCategory> optional = jokeCategoryRepository.findById(id); //as findById returns Optional
         if (optional.isPresent()) {
             jokeCategory = optional.get();
         }
