@@ -29,7 +29,7 @@ public class CategoriesRestController {
     }
     @PostMapping("/categories/{id}")
     public JokeCategory updateCategory(@PathVariable int id,@RequestBody JokeCategory newcategory){
-        JokeCategory crashcaller = jokeCategoryService.getJokeCategoryById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
+        jokeCategoryService.getJokeCategoryById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
         newcategory.setId(id);
         jokeCategoryService.saveCategory(newcategory);
         return newcategory;

@@ -30,7 +30,7 @@ public class JokesRestController {
     }
     @PostMapping("/jokes/{id}")
     public Joke updateJoke(@PathVariable int id,@RequestBody Joke newjoke){
-        Joke crashcaller = jokesService.getJokeById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
+        jokesService.getJokeById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
         newjoke.setId(id);
         jokesService.saveJoke(newjoke);
         return newjoke;
