@@ -8,16 +8,15 @@ create table category_jokes(
 
 create table jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
-category int,
 text text NOT NULL,
-rating int default 0,
-foreign key (category) references category_jokes(category_id));
+category_id int,
+foreign key (category_id) references category_jokes(category_id));
 
 create table memes(
 id int PRIMARY KEY AUTO_INCREMENT,
-url text,
-rating int default 0);
+url text);
 
+/*
 create table new_memes(
 id int PRIMARY KEY AUTO_INCREMENT,
 url text,
@@ -28,5 +27,6 @@ id int PRIMARY KEY AUTO_INCREMENT,
 category int,
 text text NOT NULL,
 decision bool,
-foreign key (category) references category_jokes(category_id));
+foreign key (category) references category_jokes(category_id)); 
+*/
 

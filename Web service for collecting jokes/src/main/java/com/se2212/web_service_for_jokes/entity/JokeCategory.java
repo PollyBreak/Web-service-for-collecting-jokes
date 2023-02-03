@@ -12,7 +12,6 @@ public class JokeCategory {
     @Column(name = "category_id")
     private int id;
 
-    @NotBlank(message = "Name cannot be blank")
     @Column(name = "name")
     private String name;
 

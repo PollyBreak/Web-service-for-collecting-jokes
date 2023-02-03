@@ -4,7 +4,6 @@ import com.se2212.web_service_for_jokes.entity.JokeCategory;
 import com.se2212.web_service_for_jokes.service.JokeCategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,15 +17,18 @@ public class CategoriesRestController {
         List<JokeCategory> categories = jokeCategoryService.getAllCategories();
         return categories;
     }
+
     @GetMapping("/categories/{id}")
     public JokeCategory showCategory(@PathVariable int id){
         JokeCategory jokeCategory = jokeCategoryService.getJokeCategoryById(id);
         return jokeCategory;
     }
+
     @PostMapping("/categories")
     public void saveCategory(@RequestBody JokeCategory jokeCategory){
         jokeCategoryService.saveCategory(jokeCategory);
     }
+
     @PostMapping("/categories/{id}")
     public JokeCategory updateCategory(@PathVariable int id,@RequestBody JokeCategory newcategory){
         jokeCategoryService.getJokeCategoryById(id); //if trying to update when does not exist it adds, so i just crash the whole thing
@@ -39,4 +41,5 @@ public class CategoriesRestController {
         jokeCategoryService.deleteCategory(id);
         return showAllCategories();
     }
+
 }

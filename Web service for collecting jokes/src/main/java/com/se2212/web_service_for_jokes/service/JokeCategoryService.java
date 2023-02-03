@@ -15,7 +15,6 @@ public class JokeCategoryService {
     @Autowired
     private JokeCategoryRepository jokeCategoryRepository;
 
-    @Transactional
     public List<JokeCategory> getAllCategories(){
         return jokeCategoryRepository.findAll();
     }
@@ -29,12 +28,25 @@ public class JokeCategoryService {
         return jokeCategory;
     }
 
+
+
+    public JokeCategory getJokeCategoryById(int id) {
+        JokeCategory jokeCategory = null;
+        Optional<JokeCategory> optional = jokeCategoryRepository.findById(id);
+        if (optional.isPresent()) {
+            jokeCategory = optional.get();
+        }
+        return jokeCategory;
+    }
+
     @Transactional
     public void saveCategory(JokeCategory jokeCategory){
         jokeCategoryRepository.save(jokeCategory);
     }
+
     @Transactional
     public void deleteCategory(int id){
         jokeCategoryRepository.deleteById(id);
     }
+
 }
