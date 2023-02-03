@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,10 +19,6 @@ public class JokeCategoryService {
     public List<JokeCategory> getAllCategories(){
         return jokeCategoryRepository.findAll();
     }
-
-<<<<<<< Updated upstream
-=======
-
     @Transactional
     public JokeCategory getJokeCategoryById(int id) {
         JokeCategory jokeCategory = null;
@@ -40,5 +37,4 @@ public class JokeCategoryService {
     public void deleteCategory(int id){
         jokeCategoryRepository.deleteById(id);
     }
->>>>>>> Stashed changes
 }

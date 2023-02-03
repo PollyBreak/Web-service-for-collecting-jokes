@@ -33,7 +33,11 @@ public class JokesService {
     }
 
     @Transactional
-    public void saveCategory(Joke newjoke){
+    public void saveJoke(Joke newjoke){
         jokesRepository.save(newjoke);
+    }
+    @Transactional
+    public void deleteJoke(int id){
+        jokesRepository.deleteById(id);
     }
 }
