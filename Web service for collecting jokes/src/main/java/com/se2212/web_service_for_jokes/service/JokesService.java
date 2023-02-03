@@ -16,13 +16,13 @@ public class JokesService {
     @Autowired
     private JokesRepository jokesRepository;
 
-    @Transactional
+
     public List<Joke> getAllJokes(){
         return jokesRepository.findAll();
     }
 
 
-    @Transactional
+
     public Joke getJokeById(int id) {
         Joke joke = null;
         Optional<Joke> optional = jokesRepository.findById(id);
@@ -32,11 +32,11 @@ public class JokesService {
         return joke;
     }
 
-    @Transactional
+
     public void saveJoke(Joke newjoke){
         jokesRepository.save(newjoke);
     }
-    @Transactional
+
     public void deleteJoke(int id){
         jokesRepository.deleteById(id);
     }
