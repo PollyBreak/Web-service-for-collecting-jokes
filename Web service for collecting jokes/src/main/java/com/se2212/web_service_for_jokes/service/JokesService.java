@@ -11,17 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class JokesService {
     @Autowired
     private JokesRepository jokesRepository;
 
-
     public List<Joke> getAllJokes(){
         return jokesRepository.findAll();
     }
-
-
 
     public Joke getJokeById(int id) {
         Joke joke = null;
@@ -31,7 +27,6 @@ public class JokesService {
         }
         return joke;
     }
-
 
     public void saveJoke(Joke newjoke){
         jokesRepository.save(newjoke);
