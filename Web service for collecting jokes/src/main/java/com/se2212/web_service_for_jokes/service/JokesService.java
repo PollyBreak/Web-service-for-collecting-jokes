@@ -23,12 +23,8 @@ public class JokesService {
     }
 
     public Joke getJokeById(int id) {
-        Joke joke = null;
         Optional<Joke> optional = jokesRepository.findById(id); //as findById returns Optional
-        if (optional.isPresent()) {
-            joke = optional.get();
-        }
-        return joke;
+        return optional.orElse(null);
     }
 
     public void saveJoke(Joke newjoke){
