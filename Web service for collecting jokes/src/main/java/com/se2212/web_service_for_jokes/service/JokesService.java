@@ -12,8 +12,11 @@ import java.util.Optional;
 
 @Service
 public class JokesService {
-    @Autowired
-    private JokesRepository jokesRepository;
+    private final JokesRepository jokesRepository;
+
+    public JokesService(JokesRepository jokesRepository) {
+        this.jokesRepository = jokesRepository;
+    }
 
     public List<Joke> getAllJokes(){
         return jokesRepository.findAll();
