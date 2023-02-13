@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private int id;
     @Column(name = "username")
     private String username;
@@ -20,7 +20,9 @@ public class User {
     @Column(name = "password")
     private String password;
     @ManyToMany
-    @JoinColumn(name="role_id")
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
     private List<Role> roles;
     public User(){}
     public User(String username,String firstName,String email,String password, List<Role> roles){
