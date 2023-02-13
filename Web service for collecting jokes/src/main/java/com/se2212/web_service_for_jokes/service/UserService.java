@@ -23,12 +23,12 @@ public class UserService {
         this.passwordEncoder= new BCryptPasswordEncoder();
     }
     public List<User> getAllUsers(){return userRepository.findAll();}
-    public User getUserById(int id){
+    public User findById(int id){
         Optional<User> optional = userRepository.findById(id);
         return optional.orElse(null);
     }
     //may be obsolete
-    public User getUserByUsername(String username){
+    public User findByUsername(String username){
         User result = userRepository.findByUsername(username);
         return result;
     }
