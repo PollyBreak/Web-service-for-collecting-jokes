@@ -17,10 +17,10 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository/*, BCryptPasswordEncoder passwordEncoder*/){
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder){
         this.userRepository=userRepository;
         this.roleRepository=roleRepository;
-        this.passwordEncoder= new BCryptPasswordEncoder();
+        this.passwordEncoder= passwordEncoder;
     }
     public List<User> getAllUsers(){return userRepository.findAll();}
     public User findById(int id){
