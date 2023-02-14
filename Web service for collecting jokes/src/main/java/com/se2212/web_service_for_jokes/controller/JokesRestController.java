@@ -1,7 +1,10 @@
 package com.se2212.web_service_for_jokes.controller;
 
 import com.se2212.web_service_for_jokes.entity.Joke;
+import com.se2212.web_service_for_jokes.entity.JokeCategory;
+import com.se2212.web_service_for_jokes.entity.NewJoke;
 import com.se2212.web_service_for_jokes.service.JokesService;
+import com.se2212.web_service_for_jokes.service.NewJokeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +14,8 @@ import java.util.List;
 public class JokesRestController {
     @Autowired
     private JokesService jokesService;
+    @Autowired
+    private NewJokeService newJokeService;
     @GetMapping("/jokes")
     public List<Joke> showAllJokes(){
         List<Joke> jokes = jokesService.getAllJokes();
@@ -22,15 +27,40 @@ public class JokesRestController {
         return joke;
     }
     @PostMapping("/jokes")
-    public void saveJoke(@RequestBody Joke joke){
-        jokesService.saveJoke(joke);
+    public void saveJoke(@RequestBody NewJoke joke){
+        newJokeService.saveJoke(joke);
     }
-    @PutMapping("/jokes")
+    @GetMapping("/admin/newjokes")
+    public List<NewJoke> showNewJokes(){
+        List<NewJoke> jokes = newJokeService.getAllJokes();
+        return jokes;
+    }
+    @GetMapping("/admin/newjokes/{id}")
+    public NewJoke showNewJoke(@PathVariable int id){
+        NewJoke joke = newJokeService.getJokeById(id);
+        return joke;
+    }
+    @GetMapping("/admin/newjokes/{id}/accept")
+    public void acceptNewJoke(@PathVariable int id){
+        NewJoke joke = newJokeService.getJokeById(id);
+        Joke newjoke = new Joke(joke.getText(), joke.getJokeCategory());
+        jokesService.saveJoke(newjoke);
+    }
+    @PutMapping("/admin/newjokes")
+    public NewJoke updateJoke(@RequestBody NewJoke updatedjoke){
+        newJokeService.saveJoke(updatedjoke);
+        return updatedjoke;
+    }
+    @DeleteMapping("/admin/newjokes/{id}")
+    public void deleteNewJoke(@PathVariable int id){
+        newJokeService.deleteJoke(id);
+    }
+    @PutMapping("/admin/jokes")
     public Joke updateJoke(@RequestBody Joke updatedjoke){
         jokesService.saveJoke(updatedjoke);
         return updatedjoke;
     }
-    @DeleteMapping("/jokes/{id}")
+    @DeleteMapping("/admin/jokes/{id}")
     public List<Joke> deleteJoke(@PathVariable int id){
         jokesService.deleteJoke(id);
         return showAllJokes();
