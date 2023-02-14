@@ -36,10 +36,10 @@ public class AuthenticationRestController {
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
         try{
             String username = requestDto.getUsername();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword());
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
             User user = userService.findByUsername(username);
             if (user == null) {
-                throw new UsernameNotFoundException("User with such username wasn't found")
+                throw new UsernameNotFoundException("User with such username wasn't found");
             }
             String token = tokenProvider.createToken(username, user.getRoles()); // can be updated (change param list)
             Map<Object, Object> responseMap = new HashMap<>(); // may be change first obj -> string
