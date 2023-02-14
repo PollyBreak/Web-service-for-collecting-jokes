@@ -1,9 +1,5 @@
 package com.se2212.web_service_for_jokes.entity;
 
-<<<<<<< Updated upstream
-public class Meme {
-    
-=======
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
@@ -59,5 +55,4 @@ public class Meme {
     public String toString() {
         return "Meme:" + text + '\'';
     }
->>>>>>> Stashed changes
 }
