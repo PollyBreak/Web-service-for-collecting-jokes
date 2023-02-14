@@ -1,8 +1,13 @@
 package com.se2212.web_service_for_jokes.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "jokes")
 public class Joke {
@@ -19,42 +24,9 @@ public class Joke {
     @JoinColumn(name ="category_id")
     private JokeCategory jokeCategory;
 
-    public Joke() {
-    }
-
     public Joke(String text, JokeCategory jokeCategory) {
         this.text = text;
         this.jokeCategory = jokeCategory;
-    }
-    
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setJokeCategory(JokeCategory jokeCategory) {
-        this.jokeCategory = jokeCategory;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public JokeCategory getJokeCategory() {
-        return jokeCategory;
-    }
-
-    @Override
-    public String toString() {
-        return "Шутка: " + text;
     }
 }
 
