@@ -35,19 +35,19 @@ user_id int,
 role_id int,
 foreign key (user_id) references db_for_fun.users(user_id),
 foreign key (role_id) references db_for_fun.roles(role_id)
-)
+);
 
 /*
 create table new_memes(
 id int PRIMARY KEY AUTO_INCREMENT,
 url text,
 decision bool);
+*/
 
 create table new_jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
-category int,
 text text NOT NULL,
-decision bool,
-foreign key (category) references category_jokes(category_id)); 
-*/
+category_id int,
+foreign key (category_id) references category_jokes(category_id)); 
+
 
