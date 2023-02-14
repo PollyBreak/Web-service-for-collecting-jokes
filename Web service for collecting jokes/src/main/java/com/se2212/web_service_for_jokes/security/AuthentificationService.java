@@ -1,6 +1,6 @@
 package com.se2212.web_service_for_jokes.security;
 
-import com.se2212.web_service_for_jokes.dto.AuthentificationRequest;
+import com.se2212.web_service_for_jokes.dto.AuthenticationRequest;
 import com.se2212.web_service_for_jokes.dto.AuthentificationResponse;
 import com.se2212.web_service_for_jokes.dto.RegisterRequest;
 import com.se2212.web_service_for_jokes.entity.User;
@@ -42,7 +42,7 @@ public class AuthentificationService {
                 .build();
     }
 
-    public AuthentificationResponse authenticate(AuthentificationRequest request) {
+    public AuthentificationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),

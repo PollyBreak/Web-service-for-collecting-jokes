@@ -1,6 +1,6 @@
 package com.se2212.web_service_for_jokes.controller;
 
-import com.se2212.web_service_for_jokes.dto.AuthentificationRequest;
+import com.se2212.web_service_for_jokes.dto.AuthenticationRequest;
 import com.se2212.web_service_for_jokes.dto.AuthentificationResponse;
 import com.se2212.web_service_for_jokes.dto.RegisterRequest;
 import com.se2212.web_service_for_jokes.security.*;
@@ -24,7 +24,7 @@ public class AuthenticationRestController {
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthentificationResponse> authenticate(
-            @RequestBody AuthentificationRequest request
+            @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(service.authenticate(request));
     }
