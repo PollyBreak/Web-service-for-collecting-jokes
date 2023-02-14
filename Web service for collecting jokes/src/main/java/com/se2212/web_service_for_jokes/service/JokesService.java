@@ -25,6 +25,9 @@ public class JokesService {
         Optional<Joke> optional = jokesRepository.findById(id); //as findById returns Optional
         return optional.orElse(null);
     }
+    public List<Joke> getJokesByCategory(String category){
+        return jokesRepository.findAllByJokeCategoryName(category);
+    }
     public void saveJoke(Joke newjoke){
         jokesRepository.save(newjoke);
     }
