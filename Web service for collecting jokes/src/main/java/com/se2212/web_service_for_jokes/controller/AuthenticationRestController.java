@@ -11,15 +11,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "api/auth/")
+@RequestMapping("/api/auth")
 public class AuthenticationRestController {
 
     private final AuthenticationManager authenticationManager;
@@ -33,6 +31,7 @@ public class AuthenticationRestController {
         this.userService = userService;
     }
 
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
         try{
             String username = requestDto.getUsername();
