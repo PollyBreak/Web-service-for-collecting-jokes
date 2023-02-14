@@ -34,7 +34,7 @@ public class SecurityConfig{
                 .requestMatchers(HttpMethod.POST,"/api/v1/auth/**")
                 .permitAll()
                 .requestMatchers("/admin/**")
-                .hasRole("ADMIN")
+                .hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
