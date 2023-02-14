@@ -5,6 +5,7 @@ import com.se2212.web_service_for_jokes.security.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -30,8 +31,10 @@ public class SecurityConfig{
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**")
+                .requestMatchers(HttpMethod.POST,"/api/v1/auth/**")
                 .permitAll()
+                .requestMatchers("/admin/**")
+                .hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
