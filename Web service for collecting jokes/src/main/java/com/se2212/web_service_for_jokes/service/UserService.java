@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+/*@Service
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -35,4 +35,4 @@ public class UserService {
     public void deleteUser(int id){
         userRepository.deleteById(id);
     }
-}
+}*/

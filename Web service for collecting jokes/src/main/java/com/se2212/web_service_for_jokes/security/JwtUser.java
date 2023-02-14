@@ -1,26 +1,47 @@
 package com.se2212.web_service_for_jokes.security;
 
+import com.se2212.web_service_for_jokes.entity.Role;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class JwtUser implements UserDetails {
-    private final int id;
-    private final String username;
-    private final String firstName;
-    private final String password;
-    private final String email;
-    private final boolean enabled;
-    private final Collection<? extends GrantedAuthority> authorities;
-    public JwtUser(int id, String username, String firstName, String password, String email, boolean enabled, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.firstName = firstName;
-        this.password = password;
-        this.email = email;
-        this.enabled = enabled;
-        this.authorities = authorities;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int id;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    private String password;
+    @Column(name="status")
+    private boolean status;
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
+    private List<Role> roles;
+    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Role> roles){
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
     public String getEmail() {
         return email;
@@ -33,7 +54,7 @@ public class JwtUser implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return mapToGrantedAuthorities(roles);
     }
     @Override
     public String getPassword() {
@@ -57,6 +78,6 @@ public class JwtUser implements UserDetails {
     }
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return status;
     }
 }

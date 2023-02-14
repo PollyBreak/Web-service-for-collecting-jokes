@@ -18,7 +18,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-@Component
+/*@Component
 public class JwtTokenProvider {
 
     @Value("${jwt.token.secret}")
@@ -88,4 +88,4 @@ public class JwtTokenProvider {
         }
     }
 
-}
+}*/
