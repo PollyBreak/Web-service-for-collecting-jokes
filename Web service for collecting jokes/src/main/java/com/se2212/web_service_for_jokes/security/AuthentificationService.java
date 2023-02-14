@@ -1,7 +1,7 @@
 package com.se2212.web_service_for_jokes.security;
 
 import com.se2212.web_service_for_jokes.dto.AuthenticationRequest;
-import com.se2212.web_service_for_jokes.dto.AuthentificationResponse;
+import com.se2212.web_service_for_jokes.dto.AuthenticationResponse;
 import com.se2212.web_service_for_jokes.dto.RegisterRequest;
 import com.se2212.web_service_for_jokes.entity.User;
 import com.se2212.web_service_for_jokes.entity.Role;
@@ -24,7 +24,7 @@ public class AuthentificationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    public AuthentificationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) {
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.getById(1));
         var user = User.builder()
@@ -37,12 +37,12 @@ public class AuthentificationService {
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthentificationResponse.builder()
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthentificationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -51,7 +51,7 @@ public class AuthentificationService {
         );
         var user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        return AuthentificationResponse.builder()
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
