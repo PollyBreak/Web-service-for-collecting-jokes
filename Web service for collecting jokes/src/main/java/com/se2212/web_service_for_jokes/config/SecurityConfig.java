@@ -18,8 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig{
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtUserDetailsService jwtUserDetailsService;
-    private static final String ADMIN_ENDPOINT = "/admin/**";
-    private static final String LOGIN_ENDPOINT = "/login";
+    private static final String ADMIN_ENDPOINT = "api/admin/**";
+    private static final String LOGIN_ENDPOINT = "api/auth/login";
     public SecurityConfig(JwtTokenProvider jwtTokenProvider,JwtUserDetailsService jwtUserDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.jwtUserDetailsService=jwtUserDetailsService;
