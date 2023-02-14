@@ -24,6 +24,11 @@ public class JokesRestController {
         List<Joke> jokes = jokesService.getAllJokes();
         return jokes;
     }
+    @RequestMapping("/jokes")
+    public List<Joke> showJokesByCategory(@RequestParam(value="category") String category){
+        List<Joke> jokes = jokesService.getJokesByCategory(category);
+        return jokes;
+    }
     @GetMapping("/jokes/getlucky")
     public Joke getRandomJoke(){
         int maximum = showAllJokes().size();
