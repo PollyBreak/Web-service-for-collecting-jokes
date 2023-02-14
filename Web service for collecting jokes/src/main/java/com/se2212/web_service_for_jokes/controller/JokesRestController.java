@@ -8,7 +8,10 @@ import com.se2212.web_service_for_jokes.service.NewJokeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class JokesRestController {
@@ -20,6 +23,28 @@ public class JokesRestController {
     public List<Joke> showAllJokes(){
         List<Joke> jokes = jokesService.getAllJokes();
         return jokes;
+    }
+    @GetMapping("/jokes/getlucky")
+    public Joke getRandomJoke(){
+        int maximum = showAllJokes().size();
+        int rng = (int)(Math.random()*maximum);
+        return showAllJokes().get(rng);
+    }
+    @GetMapping("/jokes/getlucky/{howmuch}")
+    public List<Joke> getRandomJoke(@PathVariable int howmuch){
+        List<Joke> fullist = showAllJokes();
+        int maximum = fullist.size();
+        HashSet<Integer> idset = new HashSet<>();
+        List<Joke> returnlist = new ArrayList<>();
+        while (howmuch>0) {
+            int rng = (int)(Math.random() * maximum);
+            if (!idset.contains(rng) && maximum>returnlist.size()){
+                howmuch--;
+                returnlist.add(fullist.get(rng));
+                idset.add(rng);
+            }
+        }
+        return returnlist;
     }
     @GetMapping("/jokes/{id}")
     public Joke showJoke(@PathVariable int id){
@@ -45,6 +70,7 @@ public class JokesRestController {
         NewJoke joke = newJokeService.getJokeById(id);
         Joke newjoke = new Joke(joke.getText(), joke.getJokeCategory());
         jokesService.saveJoke(newjoke);
+        deleteNewJoke(id);
     }
     @PutMapping("/admin/newjokes")
     public NewJoke updateJoke(@RequestBody NewJoke updatedjoke){
