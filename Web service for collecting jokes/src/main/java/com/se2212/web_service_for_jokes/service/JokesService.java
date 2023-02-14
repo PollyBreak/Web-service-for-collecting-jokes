@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class JokesService {
     private final JokesRepository jokesRepository;
-
     public JokesService(JokesRepository jokesRepository) {
         this.jokesRepository = jokesRepository;
     }
@@ -26,11 +25,9 @@ public class JokesService {
         Optional<Joke> optional = jokesRepository.findById(id); //as findById returns Optional
         return optional.orElse(null);
     }
-
     public void saveJoke(Joke newjoke){
         jokesRepository.save(newjoke);
     }
-
     public void deleteJoke(int id){
         jokesRepository.deleteById(id);
     }
