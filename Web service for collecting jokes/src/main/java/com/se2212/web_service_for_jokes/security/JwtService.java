@@ -19,6 +19,9 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${jwt.token.secret}")
     private String secret;
+    @Value("${jwt.token.expired}")
+    private long validity;
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -41,7 +44,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + validity))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
