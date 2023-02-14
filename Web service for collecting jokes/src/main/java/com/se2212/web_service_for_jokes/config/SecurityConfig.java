@@ -33,6 +33,8 @@ public class SecurityConfig{
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/api/v1/auth/**")
                 .permitAll()
+                .requestMatchers(HttpMethod.GET,"/jokes")
+                .permitAll()
                 .requestMatchers("/admin/**")
                 .hasAuthority("ADMIN")
                 .anyRequest()
