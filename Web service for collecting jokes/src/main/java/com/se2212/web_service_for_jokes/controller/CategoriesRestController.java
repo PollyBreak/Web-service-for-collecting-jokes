@@ -23,18 +23,18 @@ public class CategoriesRestController {
         return jokeCategory;
     }
 
-    @PostMapping("/categories")
+    @PostMapping("/admin/categories")
     public void saveCategory(@RequestBody JokeCategory jokeCategory){
         jokeCategoryService.saveCategory(jokeCategory);
     }
 
-    @PutMapping("/categories")
+    @PutMapping("/admin/categories")
     public JokeCategory updateCategory(@RequestBody JokeCategory updatedCategory){
         jokeCategoryService.saveCategory(updatedCategory);
         return updatedCategory;
     }
     
-    @DeleteMapping("/categories/{id}")
+    @DeleteMapping("/admin/categories/{id}")
     public List<JokeCategory> deleteCategory(@PathVariable int id){
         jokeCategoryService.deleteCategory(id);
         return showAllCategories();
