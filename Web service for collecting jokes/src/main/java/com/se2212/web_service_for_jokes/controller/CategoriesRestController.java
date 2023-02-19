@@ -10,8 +10,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class CategoriesRestController {
-    @Autowired
     private JokeCategoryService jokeCategoryService;
+
+    @Autowired
+    public CategoriesRestController(JokeCategoryService jokeCategoryService) {
+        this.jokeCategoryService = jokeCategoryService;
+    }
+
     @GetMapping("/categories")
     public List<JokeCategory> showAllCategories(){
         List<JokeCategory> categories = jokeCategoryService.getAllCategories();

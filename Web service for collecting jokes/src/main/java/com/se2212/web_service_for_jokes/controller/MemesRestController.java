@@ -10,8 +10,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class MemesRestController {
-    @Autowired
     private MemeService memeService;
+
+    @Autowired
+    public MemesRestController(MemeService memeService) {
+        this.memeService = memeService;
+    }
+
     @GetMapping (value ="/meme")
     public List<Meme> showAllMemes(){
         List<Meme> memes=memeService.getAllMemes();

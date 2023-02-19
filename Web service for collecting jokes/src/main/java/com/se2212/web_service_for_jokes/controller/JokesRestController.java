@@ -2,11 +2,15 @@ package com.se2212.web_service_for_jokes.controller;
 
 import com.se2212.web_service_for_jokes.entity.Joke;
 import com.se2212.web_service_for_jokes.entity.NewJoke;
+import com.se2212.web_service_for_jokes.repository.UserRepository;
+import com.se2212.web_service_for_jokes.security.JwtService;
 import com.se2212.web_service_for_jokes.service.JokesService;
 import com.se2212.web_service_for_jokes.service.NewJokeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.header.Header;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpHeaders;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,10 +18,20 @@ import java.util.List;
 @RequestMapping("/api")
 @RestController
 public class JokesRestController {
-    @Autowired
+
     private JokesService jokesService;
-    @Autowired
+    private JwtService jwtService;
+    private UserRepository userRepository;
     private NewJokeService newJokeService;
+
+    @Autowired
+    public JokesRestController(JokesService jokesService, JwtService jwtService, UserRepository userRepository, NewJokeService newJokeService) {
+        this.jokesService = jokesService;
+        this.jwtService = jwtService;
+        this.userRepository = userRepository;
+        this.newJokeService = newJokeService;
+    }
+
     @GetMapping("/jokes")
     public List<Joke> showAllJokes(){
         List<Joke> jokes = jokesService.getAllJokes();
@@ -56,7 +70,11 @@ public class JokesRestController {
         return joke;
     }
     @PostMapping("/jokes")
-    public void saveJoke(@RequestBody NewJoke joke){
+    public void saveJoke(@RequestHeader(value = "Authorization") String token,
+                         @RequestBody NewJoke joke){
+        token = token.substring(7);
+        String author_name = jwtService.extractUsername(token);
+        joke.setAuthor(userRepository.findByUsername(author_name).orElseThrow());
         newJokeService.saveJoke(joke);
     }
     @GetMapping("/admin/newjokes")
