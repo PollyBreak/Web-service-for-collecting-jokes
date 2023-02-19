@@ -22,14 +22,15 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class JwtTokenFilter extends OncePerRequestFilter {
+public class JwtTokenFilter extends OncePerRequestFilter {  // this class is the first step of authentication
+    // OncePerRequestFilter will be a filter by every request
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
+            @NonNull FilterChain filterChain  // contain the 'list' of the other filters to execute
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
@@ -41,6 +42,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         username = jwtService.extractUsername(jwt);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            // if user is already authenticated we don't need to do the next checks
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

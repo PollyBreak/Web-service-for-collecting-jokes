@@ -16,22 +16,14 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtService {
+public class JwtService {  // this class can manipulate with tokens
     @Value("${jwt.token.secret}")
     private String secret;
     @Value("${jwt.token.expired}")
     private long validity;
 
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {  // to generate token without extra claims
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -58,9 +50,19 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
 
     private Claims extractAllClaims(String token) {
         return Jwts
