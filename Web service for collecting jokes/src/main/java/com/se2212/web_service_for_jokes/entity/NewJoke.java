@@ -15,9 +15,15 @@ public class NewJoke {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "text")
     private String text;
+
     @ManyToOne
     @JoinColumn(name ="category_id")
     private JokeCategory jokeCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 }
