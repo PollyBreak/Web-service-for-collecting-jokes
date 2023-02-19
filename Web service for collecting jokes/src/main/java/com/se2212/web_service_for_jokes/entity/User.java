@@ -23,17 +23,24 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
+
     private int id;
     @Column(name = "username")
+
     private String username;
     @Column(name = "first_name")
+
     private String firstName;
     @Column(name = "email")
+
     private String email;
+
     @Column(name = "password")
     private String password;
+
     @Column(name="status")
     private boolean status;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
