@@ -1,7 +1,6 @@
 package com.se2212.web_service_for_jokes.controller;
 
 import com.se2212.web_service_for_jokes.entity.Joke;
-import com.se2212.web_service_for_jokes.entity.JokeCategory;
 import com.se2212.web_service_for_jokes.entity.NewJoke;
 import com.se2212.web_service_for_jokes.service.JokesService;
 import com.se2212.web_service_for_jokes.service.NewJokeService;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+@RequestMapping("/api")
 @RestController
 public class JokesRestController {
     @Autowired
