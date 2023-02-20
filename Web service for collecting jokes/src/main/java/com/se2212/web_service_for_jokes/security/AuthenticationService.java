@@ -18,12 +18,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthentificationService {
+public class AuthenticationService {
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
     public AuthenticationResponse register(RegisterRequest request) {
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.getById(1));
