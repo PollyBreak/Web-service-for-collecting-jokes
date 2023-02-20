@@ -1,5 +1,8 @@
 package com.se2212.web_service_for_jokes.entity;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,16 +26,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-
     private int id;
+
     @Column(name = "username")
-
     private String username;
+
     @Column(name = "first_name")
-
     private String firstName;
-    @Column(name = "email")
 
+    @Column(name = "email")
     private String email;
 
     @Column(name = "password")
