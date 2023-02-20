@@ -15,6 +15,9 @@ public class Joke {
     @Column(name = "text")
     private String text;
 
+    @Column(name = "rating")
+    private int rating = 0;
+
     @ManyToOne
     @JoinColumn(name ="category_id")
     private JokeCategory jokeCategory;
@@ -26,6 +29,7 @@ public class Joke {
         this.text = text;
         this.jokeCategory = jokeCategory;
     }
+<<<<<<< Updated upstream
     
     public void setText(String text) {
         this.text = text;
@@ -55,6 +59,17 @@ public class Joke {
     @Override
     public String toString() {
         return "Шутка: " + text;
+=======
+
+    public void updateRating(boolean rating)
+    {
+        if (rating){
+            this.rating++;
+        }
+        else{
+            this.rating--;
+        }
+>>>>>>> Stashed changes
     }
 }
 
