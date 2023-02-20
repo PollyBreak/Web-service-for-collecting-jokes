@@ -29,7 +29,7 @@ public class SecurityConfig{
                 .permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/jokes")
                 .permitAll()
-                .requestMatchers("/admin/**")
+                .requestMatchers("api/admin/**")
                 .hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
