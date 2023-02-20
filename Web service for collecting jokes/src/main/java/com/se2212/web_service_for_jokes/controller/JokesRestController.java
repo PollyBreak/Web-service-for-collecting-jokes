@@ -1,5 +1,6 @@
 package com.se2212.web_service_for_jokes.controller;
 
+import com.se2212.web_service_for_jokes.dto.RatingRequest;
 import com.se2212.web_service_for_jokes.entity.Joke;
 import com.se2212.web_service_for_jokes.entity.NewJoke;
 import com.se2212.web_service_for_jokes.repository.UserRepository;
@@ -71,6 +72,16 @@ public class JokesRestController {
         Joke joke = jokesService.getJokeById(id);
         return joke;
     }
+
+    @PostMapping("/jokes/{id}")
+    public void rateJoke(@PathVariable int id,
+                         @RequestBody RatingRequest vote)
+    {
+        Joke joke = jokesService.getJokeById(id);
+        joke.updateRating(vote.getRating());
+        jokesService.saveJoke(joke);
+    }
+
     @PostMapping("/jokes")
     public void saveJoke(@RequestHeader(value = "Authorization") String token,
                          @RequestBody NewJoke joke){
