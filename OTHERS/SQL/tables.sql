@@ -10,6 +10,7 @@ create table jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
 text text NOT NULL,
 category_id int,
+rating int default 0,
 foreign key (category_id) references category_jokes(category_id));
 
 create table memes(
