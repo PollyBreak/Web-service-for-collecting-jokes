@@ -59,6 +59,14 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
+<<<<<<< Updated upstream
+=======
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+>>>>>>> Stashed changes
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
