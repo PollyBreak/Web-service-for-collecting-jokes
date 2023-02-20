@@ -56,6 +56,9 @@ public class JokesRestController {
         int maximum = fullist.size();
         HashSet<Integer> idset = new HashSet<>();
         List<Joke> returnlist = new ArrayList<>();
+        if (howmuch>maximum){
+            howmuch=maximum;
+        }
         while (howmuch>0) {
             int rng = (int)(Math.random() * maximum);
             if (!idset.contains(rng) && maximum>returnlist.size()){
