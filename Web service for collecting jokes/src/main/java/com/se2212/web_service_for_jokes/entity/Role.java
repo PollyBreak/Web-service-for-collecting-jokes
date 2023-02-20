@@ -1,5 +1,6 @@
 package com.se2212.web_service_for_jokes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Role {
     @Column(name="role")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private List<User> users;
 
