@@ -27,7 +27,7 @@ public class SecurityConfig{
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/api/auth/**")
                 .permitAll()
-                .requestMatchers(HttpMethod.GET,"/api/jokes")
+                .requestMatchers(HttpMethod.GET,"/api/jokes/**")
                 .permitAll()
                 .requestMatchers("api/admin/**")
                 .hasAuthority("ADMIN")
