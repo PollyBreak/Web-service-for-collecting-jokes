@@ -48,6 +48,8 @@ create table new_jokes(
 id int PRIMARY KEY AUTO_INCREMENT,
 text text NOT NULL,
 category_id int,
-foreign key (category_id) references category_jokes(category_id)); 
+author_id int,
+foreign key (category_id) references category_jokes(category_id),
+foreign key (author_id) references users(user_id)); 
 
 
