@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "jokes")
-public class Joke {
+public class Joke implements Comparable<Joke>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +38,10 @@ public class Joke {
         } else {
             this.rating--;
         }
+    }
+    @Override
+    public int compareTo(Joke o) {
+        return o.rating-this.rating;
     }
 }
 

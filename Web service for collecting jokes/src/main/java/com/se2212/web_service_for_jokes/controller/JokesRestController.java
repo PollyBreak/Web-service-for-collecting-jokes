@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -36,7 +37,12 @@ public class JokesRestController {
         List<Joke> jokes = jokesService.getAllJokes();
         return jokes;
     }
-
+    @GetMapping("/jokes/sorted")
+    public List<Joke> showAllJokesDesc(){
+        List<Joke> jokes = jokesService.getAllJokes();
+        Collections.sort(jokes);
+        return jokes;
+    }
     @RequestMapping("/jokes")
     public List<Joke> showJokesByCategory(@RequestParam(value="category") String category){
         List<Joke> jokes = jokesService.getJokesByCategory(category);
