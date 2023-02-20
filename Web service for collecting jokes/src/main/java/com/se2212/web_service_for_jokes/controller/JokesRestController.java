@@ -43,9 +43,10 @@ public class JokesRestController {
         Collections.sort(jokes);
         return jokes;
     }
-    @RequestMapping("/jokes")
-    public List<Joke> showJokesByCategory(@RequestParam(value="category") String category){
-        List<Joke> jokes = jokesService.getJokesByCategory(category);
+
+    @GetMapping("/jokes/by-category/{id}")
+    public List<Joke> showJokesByCategory(@PathVariable int id){
+        List<Joke> jokes = jokesService.getJokesByCategory(id);
         return jokes;
     }
 

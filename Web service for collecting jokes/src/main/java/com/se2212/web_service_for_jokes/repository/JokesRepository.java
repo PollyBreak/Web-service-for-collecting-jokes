@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface JokesRepository extends JpaRepository<Joke,Integer> {
     List<Joke> findAllByJokeCategoryName(String category);
+
+    List<Joke> findAllByJokeCategoryId(int id);
 }
