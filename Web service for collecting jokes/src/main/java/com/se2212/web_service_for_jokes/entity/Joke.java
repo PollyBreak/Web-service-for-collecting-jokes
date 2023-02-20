@@ -20,6 +20,9 @@ public class Joke {
     @Column(name = "text")
     private String text;
 
+    @Column(name = "rating")
+    private int rating = 0;
+
     @ManyToOne
     @JoinColumn(name ="category_id")
     private JokeCategory jokeCategory;
@@ -27,6 +30,14 @@ public class Joke {
     public Joke(String text, JokeCategory jokeCategory) {
         this.text = text;
         this.jokeCategory = jokeCategory;
+    }
+
+    public void updateRating(boolean rating) {
+        if (rating) {
+            this.rating++;
+        } else {
+            this.rating--;
+        }
     }
 }
 
