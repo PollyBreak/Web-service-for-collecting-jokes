@@ -28,4 +28,4 @@ Users with the role ADMIN can:
 - read all offered by users jokes, GET mapping - "api/admin/newjokes"
 - read only one offered joke by its id, GET mapping - "api/admin/newjokes/{id}"
 
-After launching the programm please create all tables and insert data in them (use MySQL and files from the "OTHERS/SQL" "tables.sql" and "insert_data.sql".
+Before launching the programm please create all tables and insert data in them (use MySQL and files from the "OTHERS/SQL" "tables.sql" and "insert_data.sql".
